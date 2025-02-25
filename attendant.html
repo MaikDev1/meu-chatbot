@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat - Atendente</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+  <div class="chat-container">
+    <!-- Cabeçalho do chat -->
+    <header class="chat-header">
+      <h2>ChatBot - Atendente</h2>
+      <button id="toggle-sound" class="toggle-sound">Som: Ligado</button>
+    </header>
+
+    <!-- Área principal do chat -->
+    <main class="chat-main">
+      <ul id="messages"></ul>
+      <div id="typing-indicator"></div>
+    </main>
+
+
+    <!-- Rodapé do chat -->
+    <footer class="chat-footer">
+      <form id="chat-form">
+        <input id="m" type="text" placeholder="Digite sua mensagem..." autocomplete="off" required />
+        <button type="submit">Enviar</button>
+      </form>
+      <button id="end-service" style="margin-left: 10px;">Finalizar Atendimento</button>
+    </footer>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="attendant.js"></script>
+</body>
+
+</html>

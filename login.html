@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Atendente</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="login-container">
+    <h1>Login de Atendente</h1>
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Usuário" required />
+      <input type="password" id="password" placeholder="Senha" required />
+      <button type="submit">Entrar</button>
+    </form>
+    <p id="error" style="color: red;"></p>
+  </div>
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const errorP = document.getElementById('error');
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Exemplo de credenciais fixas (não use isso em produção)
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Credenciais de exemplo
+      if (username === "atendente" && password === "senha123") {
+        // Redireciona para a interface de atendimento
+        window.location.href = "/attendant";
+      } else {
+        errorP.textContent = "Usuário ou senha incorretos.";
+      }
+    });
+  </script>
+</body>
+
+</html>

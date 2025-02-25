@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container principal do chat */
+.chat-container {
+  width: 400px;
+  height: 600px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Cabeçalho do chat */
+.chat-header {
+  background: #f5f5f5;
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.chat-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Botão de som no cabeçalho */
+.toggle-sound {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Área principal das mensagens */
+.chat-main {
+  flex: 1;
+  height: 400px; /* ou outro valor fixo */
+  overflow-y: auto;
+  background: #fafafa;
+  padding: 10px;
+}
+.faq-option {
+  background: #e0f7fa;
+  color: #006064;
+  padding: 10px;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Lista de mensagens */
+#messages li.faq {
+  background: #e0f7fa;
+  color: #006064;
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+#messages li {
+  margin-bottom: 15px;
+  display: inline-block;
+  clear: both;
+  position: relative;
+  max-width: 70%;
+  word-wrap: break-word;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Mensagens do "bot" ou "system" (alinhadas à esquerda) */
+#messages li.system,
+#messages li.attendant {
+  float: left;
+  background: #f7f7f7;
+  margin-left: 10px;
+}
+
+/* Mensagens do usuário (alinhadas à direita) */
+#messages li.user {
+  float: right;
+  background: #d2e8ff;
+  margin-right: 10px;
+}
+
+/* Indicador de digitação */
+#typing-indicator {
+  margin-top: 5px;
+  font-style: italic;
+  color: #999;
+  display: none;
+}
+
+/* Rodapé do chat */
+.chat-footer {
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+}
+
+.chat-footer form {
+  display: flex;
+  flex: 1;
+}
+
+.chat-footer input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.chat-footer button {
+  background: #49b76a;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.chat-footer button:hover {
+  background: #3da361;
+}
+
+/* Ajuste do botão de finalizar atendimento no atendente */
+#end-service {
+  background: #ff7575;
+  margin-left: 10px;
+  border-radius: 20px;
+}
+
+#end-service:hover {
+  background: #ff5c5c;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 420px) {
+  .chat-container {
+    width: 90%;
+    height: 80vh;
+  }
+}
