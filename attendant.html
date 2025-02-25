@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chat - Atendente</title>
   <link rel="stylesheet" href="style.css" />
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </head>
 
 <body>
@@ -23,19 +23,17 @@
       <div id="typing-indicator"></div>
     </main>
 
-
     <!-- Rodapé do chat -->
     <footer class="chat-footer">
       <form id="chat-form">
         <input id="m" type="text" placeholder="Digite sua mensagem..." autocomplete="off" required />
         <button type="submit">Enviar</button>
       </form>
-      <button id="end-service" style="margin-left: 10px;">Finalizar Atendimento</button>
+      <button id="end-service">Finalizar Atendimento</button>
     </footer>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="attendant.js"></script>
 </body>
-
 </html>

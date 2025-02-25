@@ -17,8 +17,8 @@ body {
 
 /* Container principal do chat */
 .chat-container {
-  width: 400px;
-  height: 600px;
+  width: 500px;
+  height: 650px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -29,17 +29,13 @@ body {
 
 /* Cabeçalho do chat */
 .chat-header {
-  background: #f5f5f5;
+  background: #007bff;
+  color: white;
   padding: 15px;
   text-align: center;
-  border-bottom: 1px solid #ddd;
-  position: relative;
-}
-
-.chat-header h2 {
   font-size: 18px;
-  font-weight: 700;
-  margin: 0;
+  font-weight: bold;
+  position: relative;
 }
 
 /* Botão de som no cabeçalho */
@@ -57,64 +53,124 @@ body {
 /* Área principal das mensagens */
 .chat-main {
   flex: 1;
-  height: 400px; /* ou outro valor fixo */
   overflow-y: auto;
   background: #fafafa;
-  padding: 10px;
-}
-.faq-option {
-  background: #e0f7fa;
-  color: #006064;
-  padding: 10px;
-  border-radius: 10px;
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
+  padding: 10px 20px;  /* um pouco mais de espaço lateral */
 }
 
-/* Lista de mensagens */
-#messages li.faq {
-  background: #e0f7fa;
-  color: #006064;
-  font-weight: bold;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
+/* Lista de mensagens (UL) */
+#messages {
+  list-style: none;  /* remove qualquer bullet */
 }
 
+/* Mensagens gerais */
 #messages li {
   margin-bottom: 15px;
-  display: inline-block;
-  clear: both;
-  position: relative;
   max-width: 70%;
   word-wrap: break-word;
   padding: 10px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   font-size: 14px;
   line-height: 1.4;
+  clear: both; /* garante que cada mensagem fique numa nova linha */
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Mensagens do "bot" ou "system" (alinhadas à esquerda) */
-#messages li.system,
-#messages li.attendant {
-  float: left;
-  background: #f7f7f7;
-  margin-left: 10px;
+/* Animação suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Mensagens do usuário (alinhadas à direita) */
+/* Usuário (float right) */
 #messages li.user {
   float: right;
   background: #d2e8ff;
   margin-right: 10px;
+  text-align: right;
+}
+
+/* Atendente (float left) */
+#messages li.attendant {
+  float: left;
+  background: #f7f7f7;
+  margin-left: 10px;
+  text-align: left;
+}
+
+/* Mensagem "Bom dia..." (tipo system) */
+#messages li.system {
+  float: none; /* Centraliza horizontalmente */
+  background: #fff6d6;
+  color: #333;
+  margin: 10px auto; /* Distância das bordas e centralização */
+  text-align: center;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px 15px;
+  max-width: 70%;
+}
+
+/* Opções de FAQ */
+#messages li.faq {
+  float: none; /* Centraliza horizontalmente */
+  background: #e0f7fa;
+  color: #006064;
+  margin: 10px auto;
+  font-weight: bold;
+  border-radius: 10px;
+  text-align: left;
+  padding: 10px 15px;
+  max-width: 70%;
+}
+
+/* Mensagens do FAQ */
+.faq-option {
+  display: flex;
+  align-items: center;
+  background: #e0f7fa;
+  color: #006064;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.faq-option:hover {
+  background: #b2ebf2;
+}
+
+/* Avatar das mensagens */
+.message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.message.user {
+  flex-direction: row-reverse;
+}
+
+.message .avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin: 5px;
 }
 
 /* Indicador de digitação */
 #typing-indicator {
-  margin-top: 5px;
   font-style: italic;
-  color: #999;
+  color: #555;
+  margin: 5px 10px;
   display: none;
 }
 
@@ -137,7 +193,6 @@ body {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  outline: none;
   font-size: 14px;
   margin-right: 10px;
 }
@@ -157,7 +212,7 @@ body {
   background: #3da361;
 }
 
-/* Ajuste do botão de finalizar atendimento no atendente */
+/* Ajuste do botão de finalizar atendimento */
 #end-service {
   background: #ff7575;
   margin-left: 10px;
