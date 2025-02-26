@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Atendente</title>
+  <link rel="stylesheet" href="/login.css"/>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Cadastro de Atendente</h1>
+    <form action="/register" method="POST">
+      <input type="text" name="username" placeholder="Usuário" required />
+      <input type="password" name="password" placeholder="Senha" required />
+      <input type="text" name="fullName" placeholder="Nome Completo" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+    <p>Já tem uma conta? <a href="/login">Faça login</a></p>
+  </div>
+</body>
+</html>

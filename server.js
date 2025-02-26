@@ -18,34 +18,52 @@ app.get("/", (req, res) => {
 app.get("/attendant", (req, res) => {
   res.sendFile(__dirname + "/attendant.html");
 });
+app.get("/login", (req, res) => {
+  res.sendFile(__dirname + "/login.html");
+});
 
-function pairSockets(userObj, attendantSocket) {
-  const userSocket = userObj.socket;
-  pairings[userSocket.id] = attendantSocket;
-  pairings[attendantSocket.id] = userSocket;
+app.get("/register", (req, res) => {
+  res.sendFile(__dirname + "/register.html");
+});
 
-  console.log(
-    `Pareado: Usuário ${userSocket.id} (${userObj.fullName} - ${userObj.sector} - ${userObj.matricula}) <-> Atendente ${attendantSocket.id}`
-  );
-
-  userSocket.emit("system message", "Você foi conectado a um atendente.");
-  attendantSocket.emit(
-    "system message",
-    `Você está atendendo ${userObj.fullName} (${userObj.sector}) - Matrícula: ${userObj.matricula}.`
-  );
-
-  // Calcula a saudação automática com base na hora atual
-  const now = new Date();
-  const hour = now.getHours();
-  const greeting =
-    hour < 12 ? "Bom dia, como posso ajudar?" : "Boa tarde, como posso ajudar?";
-
-  // Envia a mensagem de saudação automaticamente para o usuário
-  userSocket.emit("chat message", { message: greeting });
-}
-
+// Adicionando eventos para setar os nomes do atendente e do usuário
 io.on("connection", (socket) => {
   console.log("Novo socket conectado: " + socket.id);
+
+  socket.on("set attendant name", (name) => {
+    socket.attendantName = name;
+    console.log(`Atendente ${socket.id} definido como: ${name}`);
+  });
+
+  socket.on("set user name", (name) => {
+    socket.userName = name;
+    console.log(`Usuário ${socket.id} definido como: ${name}`);
+  });
+
+  function pairSockets(userObj, attendantSocket) {
+    const userSocket = userObj.socket;
+    pairings[userSocket.id] = attendantSocket;
+    pairings[attendantSocket.id] = userSocket;
+
+    console.log(
+      `Pareado: Usuário ${userSocket.id} (${userObj.fullName} - ${userObj.sector} - ${userObj.matricula}) <-> Atendente ${attendantSocket.id}`
+    );
+
+    userSocket.emit("system message", "Você foi conectado a um atendente.");
+    attendantSocket.emit(
+      "system message",
+      `Você está atendendo ${userObj.fullName} (${userObj.sector}) - Matrícula: ${userObj.matricula}.`
+    );
+
+    // Calcula a saudação automática com base na hora atual
+    const now = new Date();
+    const hour = now.getHours();
+    const greeting =
+      hour < 12 ? "Bom dia, como posso ajudar?" : "Boa tarde, como posso ajudar?";
+
+    // Envia a mensagem de saudação automaticamente para o usuário
+    userSocket.emit("chat message", { message: greeting, senderName: "Sistema" });
+  }
 
   socket.on("attendant join", () => {
     console.log("Atendente conectado: " + socket.id);
@@ -76,7 +94,9 @@ io.on("connection", (socket) => {
   socket.on("chat message", (msg) => {
     if (pairings[socket.id]) {
       const targetSocket = pairings[socket.id];
-      targetSocket.emit("chat message", { message: msg });
+      // Usa o nome do atendente ou do usuário, conforme configurado
+      let senderName = socket.attendantName || socket.userName || "Atendente";
+      targetSocket.emit("chat message", { message: msg, senderName });
     } else {
       socket.emit(
         "system message",
